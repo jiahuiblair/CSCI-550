@@ -83,7 +83,7 @@ def kmean(D,k,e):
 
 ### Internal assessment
 def internalassessment(D,k):
-	internalkmean=D.copy()
+	internal=D.copy()
 	######## create a cluster list to store points in each cluster
 	cluster=[]
 	for i in range(0,k): 
@@ -91,9 +91,9 @@ def internalassessment(D,k):
 		cluster.append(i)
 
 	for i in range(0,k):
-		for j in range(len(internalkmean)):
-			if internalkmean.iloc[j,2]==i:
-				cluster[i].append(internalkmean.iloc[j,:])
+		for j in range(len(internal)):
+			if internal.iloc[j,2]==i:
+				cluster[i].append(internal.iloc[j,:])
 
 	######## mean distance to all points in closest cluster: Uout
 	Uout=[]
