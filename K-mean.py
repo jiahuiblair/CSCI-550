@@ -17,10 +17,10 @@ temp["label"]=np.nan
 ######### K-mean clustering algorithm
 
 def centroiddistance(T,a,b):
-		d=[]
-		for i in range(0,k):
-			d.append(np.sqrt(abs(T[a][i][0]-T[b][i][0])+abs(T[a][i][1]-T[b][i][1])))
-		return sum(d)
+	d=[]
+	for i in range(0,k):
+		d.append(np.sqrt(abs(T[a][i][0]-T[b][i][0])+abs(T[a][i][1]-T[b][i][1])))
+	return sum(d)
 
 def kmean(D,k,e):
 	### initialize the first centroids
@@ -74,14 +74,75 @@ def kmean(D,k,e):
 			newcentroid.append(r)
 		T[t]=newcentroid
 		distance=centroiddistance(T,t, tminus1)
+	return(D)
+	
 	# for i in C:
 	# 	print("new cluster")
 	# 	print("the length is" + str(len(i)))
-	
-	
+
+
+### Internal assessment
+def internalassessment(D,k):
+	internalkmean=D.copy()
+	######## create a cluster list to store points in each cluster
+	cluster=[]
+	for i in range(0,k): 
+		i=[] 
+		cluster.append(i)
+
+	for i in range(0,k):
+		for j in range(len(internalkmean)):
+			if internalkmean.iloc[j,2]==i:
+				cluster[i].append(internalkmean.iloc[j,:])
+
+	######## mean distance to all points in closest cluster: Uout
+	Uout=[]
+	currentclu=[]
+	for k in range(len(cluster)):
+		clu=cluster.copy()
+		currentclu=clu.pop(k) ## length is the number of points
+		subclu=clu ## length is 2
+		for i in currentclu:
+			Dout=[]
+			for j in subclu:
+				Doutsub=[]
+				for y in j:
+					t=math.sqrt(abs(i.iloc[0]-y.iloc[0])+abs(i.iloc[1]-y.iloc[1]))
+					Doutsub.append(t)
+				average= sum(Doutsub)/len(Doutsub)
+				Dout.append(average)
+			i["Uout"]=min(Dout)
+		Uout.append(currentclu)
+
+	######## mean distance to all points in the cluster: Uin
+	for k in Uout:
+		for i in range(len(k)):
+			clus=k.copy()
+			currenti=clus.pop(i)
+			subclus=clus
+			Dinsub=[]
+			for j in subclus:
+				w=math.sqrt(abs(currenti.iloc[0]-j.iloc[0])+abs(currenti.iloc[1]-j.iloc[1]))
+				Dinsub.append(w)
+			average=sum(Dinsub)/len(Dinsub)
+			k[i]["Uin"]=average
+
+	######## Silhouette coeff for a point
+	for k in Uout:
+		for i in k:
+			Si=(i.iloc[3]-i.iloc[4])/(max(i.iloc[3],i.iloc[4]))
+			i["Si"]=Si
+	sc=[]
+	for k in Uout:
+		for i in k:
+			sc.append(i.iloc[5])
+	SC=sum(sc)/len(sc)
+	print("The Silhouette Coeff is ")
+	print(SC)
+
 ### apply k-mean algorithm 
 k=3
-e=2
-kmean(temp,k,e)
-
-print(temp)
+e=0.05
+km=temp.copy()
+kmean(km,k,e)
+internalassessment(km,k)
