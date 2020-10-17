@@ -74,7 +74,7 @@ def kmean(D,k,e):
 			newcentroid.append(r)
 		T[t]=newcentroid
 		distance=centroiddistance(T,t, tminus1)
-	return(D)
+	print(D)
 	
 	# for i in C:
 	# 	print("new cluster")
