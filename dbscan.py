@@ -21,13 +21,16 @@ temp["label"]=np.nan
 
 # for index, row in temp.iterrows():
 # 	print(index)
+# 	print(type(row[1]))
 # 	print(math.isnan(row[2]))
 
 
 def FindPointsInRange(data, p, eps):
 	neighbours = []
-	for q in data:
-		dist = LA.norm(p-q)#NOTE change for dataframe
+	attri_len = len(p)-1
+	for index, q in data.iterrows():
+		dist = LA.norm(p[:attri_len]-q[:attri_len])#this takes the L2 norm of the attributes giving us it's euclidian distance.
+		#print(dist)
 		if dist <= eps and dist != 0: #if it is below our threshold distance eps and isn't itself add it to the list.
 			neighbours.append(q)
 	return neighbours
@@ -44,18 +47,23 @@ def dbscan(data, eps, minPts):
 		Cluster_num += 1
 		point[2] = Cluster_num
 		set_of_neighbours = neighbours
+		#print(len(set_of_neighbours))
 		for n_point in neighbours:
 			if n_point[2] == -1: #point isn't a noise point, it's part of a cluster
 				n_point[2] = Cluster_num
-			if point == 0: #point already has a label from explorative steps
+			if not math.isnan(point[2]): #point already has a label from explorative steps
 				continue
 			n_point[2] = Cluster_num
 			neighbours = FindPointsInRange(data, n_point, eps)
 			if len(neighbours) >= minPts:
 				set_of_neighbours = list(set().union(set_of_neighbours, neighbours)) #add any additional points that meet the distance requirement
+			#print(len(set_of_neighbours))
+	return data
 
 
+db = dbscan(temp, 0.3, 10)
 
+print(db)
 
 
 
