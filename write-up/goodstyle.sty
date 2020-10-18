@@ -1,0 +1,138 @@
+\ProvidesPackage{goodstyle}
+
+% ... to make TODO items easy to see
+\usepackage{color}
+\definecolor{darkorchid}{rgb}{0.6,0.196,0.8}
+\newcommand{\todo}[1]{{\color{red}[[\textbf{XXX TODO: }#1]]}}
+\newcommand{\brittany}[1]{{\color{blue}[[\textbf{Brittany says: }#1]]}}
+\newcommand{\robin}[1]{{\color{darkorchid}[[\textbf{Robin Says: }#1]]}}
+
+
+%-------Packages---------
+\usepackage{amssymb,amsmath,amsfonts}
+\usepackage[all,arc,cmtip]{xy}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{url}
+\usepackage{listings}
+
+
+%\usepackage{microtype}%if unwanted, comment out or use option "draft"
+\usepackage[margin=1in]{geometry}
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+ \newtheorem{cor}[thm]{Corollary}
+ \newtheorem{prop}[thm]{Proposition}
+ \newtheorem{lem}[thm]{Lemma}
+ \newtheorem{conj}[thm]{Conjecture}
+ \newtheorem{quest}[thm]{Question}
+%
+ \theoremstyle{definition}
+ \newtheorem{defn}[thm]{Definition}
+ \newtheorem{defns}[thm]{Definitions}
+ \newtheorem{con}[thm]{Construction}
+ \newtheorem{example}[thm]{Example}
+ \newtheorem{exmps}[thm]{Examples}
+ \newtheorem{notn}[thm]{Notation}
+ \newtheorem{notns}[thm]{Notations}
+ \newtheorem{addm}[thm]{Addendum}
+ \newtheorem{exer}[thm]{Exercise}
+%
+ \theoremstyle{remark}
+ \newtheorem{rem}[thm]{Remark}
+ \newtheorem{rems}[thm]{Remarks}
+ \newtheorem{warn}[thm]{Warning}
+ \newtheorem{sch}[thm]{Scholium}
+\newtheorem*{theorem*}{$\mathbf{Theorem}$}
+
+
+%--------For Referencing--------
+\newcommand{\appendref}[1]{Section~\ref{append:#1}}
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\exref}[1]{Example~\ref{ex:#1}}
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\thmref}[1]{Theorem~\ref{thm:#1}}
+\newcommand{\defref}[1]{Definition~\ref{def:#1}}
+\newcommand{\lineref}[1]{Line~\ref{line:#1}}
+
+% make equations follow the section counter
+% \makeatletter
+% \let\c@equation\c@thm
+% \makeatother
+% \numberwithin{equation}{section}
+
+
+\graphicspath{{./}{figs/}}
+
+
+%--------From Lisbeth--------
+%\usepackage{a4}
+%\usepackage{xy}
+%\usepackage{showlabels}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\newcommand\dSpace{\operatorname{\bf d-Space}}
+\newcommand\dTop{\operatorname{\bf d-Top}}
+
+\newcommand\pdTop{\operatorname{\bf pd-Top}}
+\newcommand\wpdTop{\operatorname{\bf wpd-Top}}
+\newcommand\Top{\operatorname{\bf Top}}
+\newcommand\pdSpace{\operatorname{\bf pd-Space}}
+\newcommand{\Set}{\operatorname{\bf Set}}
+\usepackage{epsfig,amssymb} %latexsym
+\newcommand{\readn}{{\tt read} \/}
+\newcommand{\push}{{{\tt push} \/}}
+\newcommand{\resources}{\mathcal{R}}
+\newcommand{\nbd}{\nobreakdash-\hspace{0pt}}
+\newcommand{\pone}{\mathbf{1}}
+\newcommand{\dui}{\vec{I}} % directed unit interval
+\renewcommand{\P}[1]{P_{#1}}
+\newcommand{\V}[1]{V_{#1}}
+\newcommand\set[1]{\{#1\}}
+\newcommand\setof[2]{\set{#1\ /\ #2}}
+\newcommand{\capacity}[1]{\kappa_{#1}}
+\newcommand{\air}{\hspace{4mm}} % by Handel
+\newcommand{\sair}{\hspace{1mm}}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\di}[1]{\overrightarrow{#1}}
+%\newcommand{\di}[1]{\vec{#1}}
+\newcommand {\N}{{\rm{I\!N}}}
+\newcommand{\vecj}{\mathbf{j}}
+\newcommand{\vecv}{\mathbf{v}}
+\newcommand{\vecw}{\mathbf{w}}
+\newcommand{\vecsw}{\mathbf{w}}
+\newcommand{\vecsv}{\mathbf{v}}
+\newcommand{\R}{\mbox{$\mathbb R$}}
+\newcommand{\Z}{\mbox{$\mathbb Z$}}
+\newcommand{\C}{\mbox{$\mathbb C$}}
+\newcommand{\Q}{\mbox{$\mathbb Q$}}
+\newcommand{\CC}{{\cal C}}         %  script C
+\newcommand{\FF}{{\cal F}}         %  script F
+\newcommand{\OO}{{\cal O}}         %  script O
+\newcommand{\XX}{{\mathcal X}}
+\newcommand{\LL}{{\mathcal L}}
+\newcommand{\TT}{{\mathcal T}}         %  script T
+\newcommand{\UU}{{\mathcal U}}         %  script U
+\newcommand{\VV}{{\mathcal V}}         %  script V
+\newcommand{\intr}[1]{\stackrel{\circ}{#1}}
+\newcommand{\diam}{\mbox{diam }}
+\newcommand{\carrier}{\mbox{carrier }}
+\newcommand{\St}{\mbox{St}}
+\newcommand{\mb}[1]{{\mathbf #1}}
+\newcommand{\diho}{\stackrel{\leadsto}{\_}}
+%\newenvironment{pf}{\par \noindent{\bf Proof.}\quad}{\qed}
+\def\stackreh#1#2{\mathrel{\mathop{#1}\limits_{#2}}}
+\newcommand{\id}[1]{\overset{\leftarrow}{#1}}
+\newcommand{\diid}[1]{\overset{\leftrightarrow}{#1}}
+  \theoremstyle{definition}
