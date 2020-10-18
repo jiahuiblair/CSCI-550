@@ -4,6 +4,9 @@ from scipy.spatial import distance
 import math
 import random
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+# random.seed(datetime.now())
 
 ## Iris data 
 iristemp = pd.read_csv('iris.csv', sep=",", header=None) 
@@ -74,12 +77,15 @@ def kmean(D,k,e):
 			newcentroid.append(r)
 		T[t]=newcentroid
 		distance=centroiddistance(T,t, tminus1)
+	#### convert the labels to start from 1
+	for i in range(len(D)):
+		D.iloc[i,2]=D.iloc[i,2].copy() +1
 	print(D)
+
 	
 	# for i in C:
 	# 	print("new cluster")
 	# 	print("the length is" + str(len(i)))
-
 
 ### Internal assessment
 def internalassessment(D,k):
@@ -92,7 +98,7 @@ def internalassessment(D,k):
 
 	for i in range(0,k):
 		for j in range(len(internal)):
-			if internal.iloc[j,2]==i:
+			if internal.iloc[j,2]==i+1:
 				cluster[i].append(internal.iloc[j,:])
 
 	######## mean distance to all points in closest cluster: Uout
@@ -142,7 +148,8 @@ def internalassessment(D,k):
 
 ### apply k-mean algorithm 
 k=3
-e=0.05
+e=0.00001
 km=temp.copy()
 kmean(km,k,e)
 internalassessment(km,k)
+
