@@ -58,7 +58,9 @@ plt.plot(synth['X'][0:29], synth['Y'][0:29], 'ro', #plot results
          synth['X'][30:59], synth['Y'][30:59], 'bo', 
          synth['X'][60:89], synth['Y'][60:89], 'go',
          synth['X'][90:99], synth['Y'][90:99], 'yo')
-plt.show()       
+plt.savefig('synth.png')  
+plt.show()     
+
 
 def GenerateRectanglePartition(D,k,n): #not needed for iris data since we know ground truth, but could be useful for other data
     '''
@@ -98,7 +100,7 @@ plt.plot(rect_points['X'][0:29], rect_points['Y'][0:29], 'ro', #plot results
 plt.show()
 
 
-def Purity(D, C, n): 
+def Purity(D, C): 
     '''
     Computes purity based from 2D data clustered from 3 regions compared to given partition data
     :param D: A data frame with attributes, X, Y, Labels. The labels are taken to be the ground truth
@@ -122,7 +124,7 @@ def Purity(D, C, n):
     bestBmatch = max(len(B.intersection(Q)), len(B.intersection(R)), len(B.intersection(S)))
     bestCmatch = max(len(C.intersection(Q)), len(C.intersection(R)), len(C.intersection(S)))
     
-    return((bestAmatch+bestBmatch+bestCmatch)/(n))
+    return((bestAmatch+bestBmatch+bestCmatch)/(len(D.iloc[:,0])))
  
 # Make ground truth data of Iris Data
 D = iris[['Sepal Length', 'Sepal Width', 'Species']]
@@ -139,5 +141,5 @@ for i in range(len(D.iloc[:,0])):
 groundtruth = pd.DataFrame({'X':ground_truth[:,0], 'Y':ground_truth[:,1], 
                  'Label':ground_truth[:,2]})       
 # Compute purity with Kmeans output, km (need to run k-means clustering function to get km)
-Purity(groundtruth, km, 150)
+Purity(groundtruth, km)
     
