@@ -115,9 +115,38 @@ The Silhouette Coeff is
 
 \section{Exploring Datasets}
 In this section we describe our findings from Part 4. We compared $k$-means to DBSCAN on the 
-Iris data set using the assessment measures of Purity and Silhouette. Furthermore, we explored 
+first two attributes (sepal length and sepal width) of the Iris dataset using the assessment 
+measures of Purity and Silhouette. Furthermore, we explored 
 how varying the number of sample points and noise points affect the purity of $k$-means. 
-\todo{insert how $k$-means did compared to DBSCAN}
+
+Below is a plot of how $k$-means clustered the Iris dataset with 3 clusters and $e=0.05$.
+\begin{figure}[H]
+    \centering
+    {\includegraphics[width=.4\textwidth]{images/kmeans-clusters.png}} \\
+    \caption{Plot $k$-means output when applied to Sepal Length and Sepal Width of the Iris dataset. Each color represents a different cluster.}
+\end{figure}
+
+A plot of the true classification of the Iris dataset is shown below.
+\begin{figure}[H]
+    \centering
+    {\includegraphics[width=.4\textwidth]{images/groundtruth.png}} \\
+    \caption{Plot of classification of Iris species based on Sepal Length and Sepal Width of the Iris dataset. Each color represents a different species.}
+\end{figure}
+
+Comparing the two plots, we see that $k$-means will never properly classify the three iris species 
+since the red and green dots in the ground truth figure are ``well-mixed". Nevertheless, $k$-means 
+does do a good job at classifiying the species represented by the blue dots. Using our assesment 
+measures we found the puirty to be $0.666$ and silhouette coefficient to be $0.277608263$. 
+Both these measures seem reasonable given the mixing of the red and blue in the ground truth plot.
+Applying DBSCAN to the same dataset did not work as well. This is likely due to how there appears
+ to be a uniform density of the points throughout. We were not able to find any parameters that 
+produced three strong clusters. A radius of $\varepsilon = .3$  with minpts = 3 appears to 
+produce two large clusters. However, we found that increasing the number of minpts increased 
+the number of noise points, and increasing the radius started to collapse the clusters into one. 
+We found DBSCAN to perform similarly on the synthetic data since the density of the 
+points sampled is uniform throughout the rectangular regions, and the rectangular regions are 
+close to one another.
+
 Using our program to generate synthetic data that is drawn from three rectangles, we explored 
 how increasing the sample size affected the purity of the $k$-means clustering. We found that 
 keeping the noise constant while increasing the sample size did not appear to have an affect on 
@@ -162,5 +191,13 @@ don't belong to any of the rectangles. Hence, the noise points will always negat
 different amounts of noise.
 \end{center}
 \vspace{1ex}
+
+In summary, we found $k$-means to work better on our synthetic data and Iris data set than 
+DBSCAN. This is because the true classification of these data sets formed convex sets where 
+points were evenly distributed throughout. However, DBSCAN would perform better than 
+$k$-means on a data set that has non-convex clusters and where the true number of clusters is 
+unknown. Additionally, we found that sample size did not impact $k$-means performance but 
+noise did negatively impact $k$-means performance. Since DBSCAN is robust to noise, then we 
+suspect that increasing the amount of noise would not negatively impact the purity measure of DBSCAN.
 
 \end{document}
