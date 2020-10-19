@@ -35,13 +35,13 @@ The noise parameter, $r$  is the number of noise points to add to the data that 
 of any rectangular region. The output will be a data frame with attributes, `X', `Y', and `Label'. 
 `X' and `Y' denote the $x-,y-$coordinates of the data point and the label denotes which rectangle 
 the point was sampled from. A label of zero means the point is added noise.
-\item[$k$-means] \todo{}
+\item[$k$-means] To cluster a two-dimensional dataframe $(x,y)$ through the K-means clustering algorithm, run kmean$(D,k,e)$ where $D$ is a three-dimensional dataframe with $x$, $y$ and a label column with NAN values, $k$ is the number of clusters specified by the user, and $e$ is the mean distance limitation between the most updated centroids and their previous centroids. The output of the kmean$(D,k,e)$ is a three-dimensional dataframe with $x$, $y$, and corresponding updated cluster label.\todo{}
 \item[DBSCAN] \todo{}
 \item[Purity]  To compute the purity of a clustered data set, $C$, to a given partition, $D$ run 
 \textsc{Purity}$(D, C, n)$. $C$ and $D$ need to be data frames with 
 attributes `X',  `Y', and `Label'. Additionally, this function is written for data that has been 
 classified in three clusters where the labels of the clusters are either 1, 2, or 3. 
-\item[Silhouette] \todo{}
+\item[Silhouette] To conduct internal assessment, run internalassessment$(D,k)$ where $D$ is a three-dimensional dataframe with $x$, $y$, and corresponding updated cluster labels, and $k$ is the number of clusters in the clustering. The output of this function is the average silhouette coefficient value of each points $(x,y)$ silhouette coefficients. \todo{}
 \end{description}
  
 \section{Example of Input/Output}
@@ -62,7 +62,12 @@ plt.show()
     \caption{Plotting output of synth. Red, blue, and green represent the three rectangular regions. 
 Yellow points are the added noise.}
 \end{figure}
-\item[$k$-means] \todo{}
+\item[$k$-means] Below we run the k-mean algorithm with a dataframe (Sepal Length, Sepal Width, Label), $k$ equals to 3, and $e$ is 0.05. 
+$k$=3
+$e$=0.05
+km=the dataframe
+kmean$(km,k,e)$
+\todo{}
 \item[DBSCAN] \todo{}
 \item[Purity] Below we first produce the ground truth data for the Iris data set using Sepal Length 
 and Sepal Width as the X and Y attributes. We then apply purity to the $k$-means output when $e=0.05$. 
@@ -84,7 +89,7 @@ groundtruth = pd.DataFrame({'X':ground_truth[:,0], 'Y':ground_truth[:,1],
 Purity(groundtruth, km, 150)
 # output = 0.66
 \end{verbatim}
-\item[Silhouette] \todo{}
+\item[Silhouette] Below we run the internal assessment with the output dataframe from the k-mean clustering algorithm and $k$ equals to 3. \todo{}
 \end{description}
 
 \section{Exploring Datasets}
