@@ -42,7 +42,7 @@ and $e$ is the mean distance limitation between the most updated centroids and t
 centroids. The output of the \textsc{kmean}$(D,k,e)$ is a three-dimensional dataframe with $x$, $y$, 
 and corresponding updated cluster label.
 \item[DBSCAN] \todo{}
-\item[Purity]  To compute the purity of a clustered data set, $C$, to a given partition, $D$ run 
+\item[Purity]  To compute the purity of a clustered dataset, $C$, to a given partition, $D$ run 
 \textsc{Purity}$(D, C, n)$. $C$ and $D$ need to be data frames with 
 attributes `X',  `Y', and `Label'. Additionally, this function is written for data that has been 
 classified in three clusters where the labels of the clusters are either 1, 2, or 3. 
@@ -84,7 +84,7 @@ kmean(km,k,e)
 \end{figure}
 
 \item[DBSCAN] \todo{}
-\item[Purity] Below we first produce the ground truth data for the Iris data set using Sepal Length 
+\item[Purity] Below we first produce the ground truth data for the Iris dataset using Sepal Length 
 and Sepal Width as the X and Y attributes. We then apply purity to the $k$-means output when $e=0.05$. 
 \begin{verbatim}
 D = iris[['Sepal Length', 'Sepal Width', 'Species']]
@@ -148,7 +148,9 @@ points sampled is uniform throughout the rectangular regions, and the rectangula
 close to one another.
 
 Using our program to generate synthetic data that is drawn from three rectangles, we explored 
-how increasing the sample size affected the purity of the $k$-means clustering. We found that 
+how increasing the sample size affected the purity of the $k$-means clustering. We only did this 
+exploration for $k$-means since our purity function is only written for three clusters, and our 
+DBSCAN output typically found more than three clusters. We found that 
 keeping the noise constant while increasing the sample size did not appear to have an affect on 
 purity. See Table 1. We repeated this small experiment several times and got similar results. 
 
@@ -192,10 +194,10 @@ different amounts of noise.
 \end{center}
 \vspace{1ex}
 
-In summary, we found $k$-means to work better on our synthetic data and Iris data set than 
-DBSCAN. This is because the true classification of these data sets formed convex sets where 
+In summary, we found $k$-means to work better on our synthetic data and Iris dataset than 
+DBSCAN. This is because the true classification of these datasets formed convex sets where 
 points were evenly distributed throughout. However, DBSCAN would perform better than 
-$k$-means on a data set that has non-convex clusters and where the true number of clusters is 
+$k$-means on a dataset that has non-convex clusters and where the true number of clusters is 
 unknown. Additionally, we found that sample size did not impact $k$-means performance but 
 noise did negatively impact $k$-means performance. Since DBSCAN is robust to noise, then we 
 suspect that increasing the amount of noise would not negatively impact the purity measure of DBSCAN.
