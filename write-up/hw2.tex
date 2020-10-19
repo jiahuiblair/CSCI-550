@@ -101,7 +101,7 @@ for i in range(len(D.iloc[:,0])):
 groundtruth = pd.DataFrame({'X':ground_truth[:,0], 'Y':ground_truth[:,1], 
                  'Label':ground_truth[:,2]})       
 # Compute purity with Kmeans output, km (need to run k-means clustering function to get km)
-Purity(groundtruth, km, 150)
+Purity(groundtruth, km)
 # output = 0.66
 \end{verbatim}
 \item[Silhouette] We run the internal assessment with the output dataframe from the 
@@ -114,6 +114,53 @@ The Silhouette Coeff is
 \end{description}
 
 \section{Exploring Datasets}
-In this section we describe our findings from Part 4. \todo{}
+In this section we describe our findings from Part 4. We compared $k$-means to DBSCAN on the 
+Iris data set using the assessment measures of Purity and Silhouette. Furthermore, we explored 
+how varying the number of sample points and noise points affect the purity of $k$-means. 
+\todo{insert how $k$-means did compared to DBSCAN}
+Using our program to generate synthetic data that is drawn from three rectangles, we explored 
+how increasing the sample size affected the purity of the $k$-means clustering. We found that 
+keeping the noise constant while increasing the sample size did not appear to have an affect on 
+purity. See Table 1. We repeated this small experiment several times and got similar results. 
+
+\vspace{1ex}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+\textbf{Sample} & \textbf{Noise} & \textbf{Purity}\\ 
+40 & 5 & 0.648 \\ 
+80 & 5 & 0.649 \\ 
+120 & 5 & 0.611 \\ 
+160 & 5 & 0.643 \\ 
+200 & 5 & 0.648 \\ 
+ \hline
+\end{tabular}\\
+\textbf{Table 1.} Purity assessments applied to $k$-means clustering of the synthetic data for 
+different sample sizes.
+\end{center}
+\vspace{1ex}
+
+Next, we used our program to generate synthetic data that is drawn from three rectangles to 
+explore how increasing the noise affects the purity of the $k$-means clustering. We found that 
+as noise increased, purity tended to decrease. See Table 2. Intuitively this makes sense since the 
+noise points will be assigned to a cluster in $k$-means. However, by design, the noise points 
+don't belong to any of the rectangles. Hence, the noise points will always negatively impact the purity measure. 
+
+\vspace{1ex}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+\textbf{Sample} & \textbf{Noise} & \textbf{Purity}\\ 
+40 & 5 & 0.656 \\ 
+40 & 10 & 0.59 \\ 
+40 & 15 & 0.548 \\ 
+40 & 20 & 0.59 \\ 
+40 & 50 & 0.49 \\ 
+ \hline
+\end{tabular}\\
+\textbf{Table 2.} Purity assessments applied to $k$-means clustering of the synthetic data for 
+different amounts of noise.
+\end{center}
+\vspace{1ex}
 
 \end{document}
