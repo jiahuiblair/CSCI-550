@@ -235,22 +235,20 @@ def Purity(D, C):
     :return: The purity of C given that D is the ground truth.
     
     '''
-    ground_truth = D.as_matrix()
-    Cmat = C.as_matrix()
     
-    A = {(ground_truth[i,0],ground_truth[i,1]) for i in range(len(ground_truth[:,1])) if ground_truth[i,2] == 1}
-    B = {(ground_truth[i,0],ground_truth[i,1]) for i in range(len(ground_truth[:,1])) if ground_truth[i,2] == 2}
-    C = {(ground_truth[i,0],ground_truth[i,1]) for i in range(len(ground_truth[:,1])) if ground_truth[i,2] == 3}
+    A = {(D.iloc[i,0],D.iloc[i,1]) for i in range(len(D.iloc[:,1])) if D.iloc[i,2] == 1}
+    B = {(D.iloc[i,0],D.iloc[i,1]) for i in range(len(D.iloc[:,1])) if D.iloc[i,2] == 2}
+    E = {(D.iloc[i,0],D.iloc[i,1]) for i in range(len(D.iloc[:,1])) if D.iloc[i,2] == 3}
     
-    Q = {(Cmat[i,0],Cmat[i,1]) for i in range(len(Cmat[:,1])) if Cmat[i,2] == 1}
-    R = {(Cmat[i,0],Cmat[i,1]) for i in range(len(Cmat[:,1])) if Cmat[i,2] == 2}
-    S = {(Cmat[i,0],Cmat[i,1]) for i in range(len(Cmat[:,1])) if Cmat[i,2] == 3}
+    Q = {(C.iloc[i,0],C.iloc[i,1]) for i in range(len(C.iloc[:,1])) if C.iloc[i,2] == 1}
+    R = {(C.iloc[i,0],C.iloc[i,1]) for i in range(len(C.iloc[:,1])) if C.iloc[i,2] == 2}
+    S = {(C.iloc[i,0],C.iloc[i,1]) for i in range(len(C.iloc[:,1])) if C.iloc[i,2] == 3}
     
     bestAmatch = max(len(A.intersection(Q)), len(A.intersection(R)), len(A.intersection(S)))
     bestBmatch = max(len(B.intersection(Q)), len(B.intersection(R)), len(B.intersection(S)))
-    bestCmatch = max(len(C.intersection(Q)), len(C.intersection(R)), len(C.intersection(S)))
+    bestEmatch = max(len(E.intersection(Q)), len(E.intersection(R)), len(E.intersection(S)))
     
-    return((bestAmatch+bestBmatch+bestCmatch)/(len(D.iloc[:,0])))
+    return((bestAmatch+bestBmatch+bestEmatch)/(len(D.iloc[:,0])))
 
 
 ####################
@@ -374,7 +372,7 @@ else: #combined showings of our test code
 	groundtruth = pd.DataFrame({'X':ground_truth[:,0], 'Y':ground_truth[:,1], 
 	                 'Label':ground_truth[:,2]})       
 	# Compute purity with Kmeans output, km (need to run k-means clustering function to get km)
-	#Purity(groundtruth, km)
+	Purity(groundtruth, km)
 
 
 
