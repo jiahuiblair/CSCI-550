@@ -31,7 +31,7 @@ $x$, $y$ and a label column with NAN values, $k$ is the number of clusters speci
 and $e$ is the mean distance limitation between the most updated centroids and their previous 
 centroids. The output of the \textsc{kmean}$(D,k,e)$ is a three-dimensional dataframe with $x$, $y$, 
 and corresponding updated cluster label.
-\item[DBSCAN] \todo{}
+\item[DBSCAN] For our implimentation of DBSCAN the usual needed input of $\epsilon$ and MinPts. $\epsilon$ is the distance threshold value while MinPts is the needed neighbours in that distance to be considered a point of a cluster. We used Euclidean distance to calculate how far points are from each other, which may account for inconsistencies with base DBSCAN.
 \item[Purity]  To compute the purity of a clustered dataset, $C$, to a given partition, $D$ run 
 \textsc{Purity}$(D, C, n)$. $C$ and $D$ need to be data frames with 
 attributes `X',  `Y', and `Label'. Additionally, this function is written for data that has been 
@@ -73,7 +73,18 @@ kmean(km,k,e)
     \caption{$k$-means output when applied to Sepal Length and Sepal Width of the Iris dataset.}
 \end{figure}
 
-\item[DBSCAN] \todo{}
+\item[DBSCAN] Below we run the DBSCAN algorithm with a dataframe (Sepal Length, Sepal Width, Label), $\epsilon$ equals to 0.3, and $MinPts$ is 10. 
+\begin{verbatim}
+e=3
+MinPts=10
+sn=the dataframe
+DBSCAN(sn,e,MinPts)
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    {\includegraphics[width=.3\textwidth]{images/kmeans.png}} \\
+\end{figure}
+
 \item[Purity] Below we first produce the ground truth data for the Iris dataset using Sepal Length 
 and Sepal Width as the X and Y attributes. We then apply purity to the $k$-means output when $e=0.05$. 
 \begin{verbatim}
