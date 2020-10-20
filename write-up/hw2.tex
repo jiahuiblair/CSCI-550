@@ -13,7 +13,7 @@
 \section{System Usage}
 
 This system was written with Python version 3.7 and uses Iris Data csv located at \path{https://github.com/jiahuiblair/CSCI-550-HW2/iris.csv} 
-to test clustering and assessment algorithms. All python functions and packages are included in the \path{main.py} file \todo{create this}
+to test clustering and assessment algorithms. All python functions and packages are included in the \path{main.py} file.
 
 All functions can be run in the command line as follows:
 
@@ -33,8 +33,9 @@ centroids. The output of the \textsc{kmean}$(D,k,e)$ is a three-dimensional data
 and corresponding updated cluster label.
 \item[DBSCAN] For our implimentation of DBSCAN the usual needed input of $\epsilon$ and MinPts. $\epsilon$ is the distance threshold value while MinPts is the needed neighbours in that distance to be considered a point of a cluster. We used Euclidean distance to calculate how far points are from each other, which may account for inconsistencies with base DBSCAN.
 \item[Purity]  To compute the purity of a clustered dataset, $C$, to a given partition, $D$ run 
-\textsc{Purity}$(D, C, n)$. $C$ and $D$ need to be data frames with 
-attributes `X',  `Y', and `Label'. Additionally, this function is written for data that has been 
+\textsc{Purity}$(D, C)$. $D$ and $C$ need to be data frames with 
+attributes `X',  `Y', and `Label'. $D$ is the data frame with the ground truth, while $C$ is the 
+clustered data. Additionally, this function is written for data that has been 
 classified in three clusters where the labels of the clusters are either 1, 2, or 3. 
 \item[Silhouette] To conduct internal assessment, run \textsc{internalassessment}$(D,k)$ 
 where $D$ is a three-dimensional dataframe with $x$, $y$, and corresponding updated cluster 
@@ -135,12 +136,12 @@ A plot of the true classification of the Iris dataset is shown below.
 \end{figure}
 
 Comparing the two plots, we see that $k$-means will never properly classify the three iris species 
-since the red and green dots in the ground truth figure are ``well-mixed". Nevertheless, $k$-means 
+since the red and green dots in the Figure 4 are ``well-mixed". Nevertheless, $k$-means 
 does do a good job at classifiying the species represented by the blue dots. Using our assesment 
 measures we found the puirty to be $0.666$ and silhouette coefficient to be $0.277608263$. 
-Both these measures seem reasonable given the mixing of the red and blue in the ground truth plot.
+Both these measures seem reasonable given the mixing of the red and green points in Figure 4. 
 Applying DBSCAN to the same dataset did not work as well. This is likely due to how there appears
- to be a uniform density of the points throughout. We were not able to find any parameters that 
+ to be a uniform density of the points throughout the data. We were not able to find any parameters that 
 produced three strong clusters. A radius of $\varepsilon = .3$  with minpts = 3 appears to 
 produce two large clusters. However, we found that increasing the number of minpts increased 
 the number of noise points, and increasing the radius started to collapse the clusters into one. 
@@ -151,8 +152,8 @@ close to one another.
 Using our program to generate synthetic data that is drawn from three rectangles, we explored 
 how increasing the sample size affected the purity of the $k$-means clustering. We only did this 
 exploration for $k$-means since our purity function is only written for three clusters, and our 
-DBSCAN output typically found more than three clusters. We found that 
-keeping the noise constant while increasing the sample size did not appear to have an affect on 
+DBSCAN output typically did not find three clusters. We found that 
+keeping the noise constant while increasing the sample size did not appear to have an effect on 
 purity. See Table 1. We repeated this small experiment several times and got similar results. 
 
 \vspace{1ex}
