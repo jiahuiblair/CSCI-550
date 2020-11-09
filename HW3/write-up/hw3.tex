@@ -1,0 +1,50 @@
+\documentclass[psamsfonts,onesided,10pt]{amsart}
+\usepackage{goodstyle}
+
+
+%opening
+\title{HW 3 - Write Up}
+\author{Robin Belton, Daniel Laden, Jiahui Ma,  Badr Zerktouni}
+
+\begin{document}
+
+\maketitle
+
+\section{System Usage}
+
+This system was written with Python version 3.7 and uses Iris Data csv located at \path{https://github.com/jiahuiblair/CSCI-550/HW3/iris.csv} 
+to test clustering and assessment algorithms. All python functions and packages are included in the \path{main.py} file.
+
+All functions can be run in the command line as follows:
+
+\begin{description}
+\item[$k$-Nearest Neighbors] 
+\item[Decision Tree] 
+\item[$k$ Fold Cross Validation] 
+\item[$F$-measure] To compute the $F$-measure of the clustered Iris data, run \textsc{Fmeasure}$(D)$ 
+where $D$ is a six-dimensional dataframe with attributes: Sepal Length, Sepal Width, Petal Length, Petal Width,
+              Species, and New Label, where the New Label is from the cluster identification. 
+\end{description}
+ 
+\section{Example of Input/Output}
+\begin{description}
+\item[$k$-Nearest Neighbors] \todo{}
+
+\item[Decision Tree] \todo{}
+
+\item[$k$ Fold Cross Validation] \todo{}
+
+\item[$F$-measure] Below we take the output from $k$-nearest neighbors when $k=4$ and then compute the $F$-measure. 
+\begin{verbatim}
+D = k_nearest(training_data,labels,testing,4)
+Fmeasure(D)
+# output = 0.9544753086419752
+\end{verbatim}
+\end{description}
+
+\section{Exploring Datasets}
+In this section we describe our findings from Part 4. We explored how varying $k$ affected the output of $k$-nearest neighbors, how applying the clustering algorithms on only two dimensions of the data affected the ouput and compared $k$-nearest neighbors to the decision tree on the Iris dataset. 
+
+\todo{finish}
+
+\end{document}
