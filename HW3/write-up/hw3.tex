@@ -43,7 +43,16 @@ Fmeasure(D)
 \end{description}
 
 \section{Exploring Datasets}
-In this section we describe our findings from Part 4. We explored how varying $k$ affected the output of $k$-nearest neighbors, how applying the clustering algorithms on only two dimensions of the data affected the ouput and compared $k$-nearest neighbors to the decision tree on the Iris dataset. 
+In this section we describe our findings from Part 4. We explored how varying $k$ affected the output of $k$-nearest neighbors, how applying the clustering algorithms on lower dimensional subsets of the data affected the output, and compared $k$-nearest neighbors to the decision tree on the Iris dataset. 
+
+First, we varied $k$ to see how this parameter affected the output of $k$-nearest neighbors on the Iris dataset. For this particular dataset, we found that even setting $k$ to as low as one gave a high $F$-measure. For $k\in \{1,...,15\}$, we got a high $F$-measure (above .9). However, once $k$ got higher than 15, then $F$-measure dropped significantly or in some cases was not even defined since not many points were being classifed as Iris-setosa. Overall, we were happy with how $k$-nearest neighbors performed in classifying the iris species. Below is a plot of the true classification and the $k$-nearest neighbors classification for $k=4$. 
+
+\begin{figure}[H]
+    \centering
+    {\includegraphics[width=.4\textwidth]{images/trueclass.png}} 
+    {\includegraphics[width=.4\textwidth]{images/KNNclass.png}} 
+    \caption{Plots of Sepal Length vs. Sepal Width of the Iris dataset. Left. The true classification of species is indicated by color. Right. Classification of species by $k$-nearest neighbors when $k=4$ is indicated by color. For both plots Versicolor is red, Virginica is blue, and Setosa is green.}
+\end{figure}
 
 \todo{finish}
 
