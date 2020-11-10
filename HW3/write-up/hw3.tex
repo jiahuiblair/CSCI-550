@@ -20,9 +20,9 @@ All functions can be run in the command line as follows:
 \begin{description}
 \item[$k$-Nearest Neighbors] We describe how to provide classification labels to the testing dataset based on the $k$-nearest neighbors from the training dataset. The function is written for the Iris data. The user needs to specify how large the training dataset will be. To run the \textsc{$k$\_nearest} function, run \textsc{$k$\_nearest}(training\_data, labels, testing, $k$) where 
 	\begin{itemize}
-	\item training\_data is \todo{}
-	\item labels is
-	\item testing is
+	\item training\_data is a dataframe with first four dimensions from Iris data including sepal length, sepal width, petal length and petal width from the training dataset.
+	\item labels is is a dataframe only containing the species dimension in Iris data.
+	\item testing is a dataframe with first four dimensions from Iris data including sepal length, sepal width, petal length and petal width from the testing dataset.
 	\item $k$ is the number of nearest neighbors to used to classify a point.
 	\end{itemize}. 
 The output is a dataframe with both new labels and old labels of the testing data.
@@ -35,7 +35,15 @@ where $D$ is a six-dimensional dataframe with attributes: Sepal Length, Sepal Wi
  
 \section{Example of Input/Output}
 \begin{description}
-\item[$k$-Nearest Neighbors] \todo{}
+\item[$k$-Nearest Neighbors] This is an example of running the \textsc{$k$\_nearest} function
+	\item Input is $k$\_nearest(training_data,labels,testing,4).
+	\item Output is
+	\begin{figure}[H]
+    	\centering
+    	{\includegraphics[width=.4\textwidth]{images/trueclass.png}} 
+   	 \caption{$k$\_nearest neighbors output dataframe}
+\end{figure}
+	
 
 \item[Decision Tree] \todo{}
 
