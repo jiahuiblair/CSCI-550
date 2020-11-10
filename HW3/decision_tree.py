@@ -44,8 +44,8 @@ def DTnumerical_score(D, Xj, attribute):
 		if entropy < max_Entropy or max_Entropy == -1: #better value for splitting found
 			max_Entropy = 0 + entropy
 			try:
-				Dy = Xj[:index]
-				Dn = Xj[index:]
+				Dy = D[:index]
+				Dn = D[index:]
 			except:
 				print("This error should not exist, if so that means your dataset's last value has more varience then the rest of the data. I'm unsure how this would happen though, so check the code.")
 
@@ -54,7 +54,7 @@ def DTnumerical_score(D, Xj, attribute):
 
 # D is the dataset, and Xj is a list of values for an attribute
 #This scoring will use Entropy or Information gain
-def DTcategorical_score(D, Xj):
+def DTcategorical_score(D, Xj, attribute):
 	n = len(Xj)
 	unique, counts = numpy.unique(a, return_counts=True)
 	unique_categories = dict(zip(unique, counts))
@@ -69,13 +69,13 @@ def DTcategorical_score(D, Xj):
 			max_Entropy = 0 + entropy
 			max_Entropy_value = uni
 
-	Dy = None
-	Dn = None
-	for x in Xj:
-		if x == max_Entropy_value: #match for the split point added it to Dy
-			Dy.append(x)
-		else: #Not a match for the split point add it to Dn
-			Dn.append(x)
+	Dy = D[D[attribute] == max_Entropy_value]
+	Dn = D[D[attribute] != max_Entropy_value]
+	# for x in Xj:
+	# 	if x == max_Entropy_value: #match for the split point added it to Dy
+	# 		Dy.append(x)
+	# 	else: #Not a match for the split point add it to Dn
+	# 		Dn.append(x)
 
 	return (Dy, Dn, max_Entropy)# we get the value to split on.
 
@@ -89,7 +89,6 @@ def lessThan(Xj, midpoint):
 #D is the dataframe, q is the smallest group size threshold, p is the purity score
 def DecisionTree(D, q, p):
 	n = len(D)
-	for 
 	newD = []
 	if n <= q:
 		#label all points in leaf with class C
@@ -104,7 +103,7 @@ def DecisionTree(D, q, p):
 		if col[0].isInt() or col[0].isFloat():
 			newD = DTnumerical_score(D, col, name)
 		else:
-			newD = DTcategorical_score(D, col)
+			newD = DTcategorical_score(D, col, name)
 		if best_score > newD[2]: #new best score
 			best_score = 0 + newD[2]
 			best_D = newD
