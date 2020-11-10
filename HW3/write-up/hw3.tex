@@ -26,8 +26,8 @@ All functions can be run in the command line as follows:
 	\item $k$ is the number of nearest neighbors to used to classify a point.
 	\end{itemize}. 
 The output is a dataframe with both new labels and old labels of the testing data.
-\item[Decision Tree] 
-\item[$k$ Fold Cross Validation] 
+\item[Decision Tree] We used the algorithm 19.1, 19.2, and 19.3 for this implementation though it's not exact because purity wasn't well explain in the algorithm on how they were calculating it each recursion. So we only had the size stopper for the recursions. This method will output each leaf and it's values to the console to see where it's splitting, and additional to this would have them go back into a data frame.
+\item[$k$ Fold Cross Validation] In this section, we used a random value generator in order to select random values from the dataset. In addition, we imported the seed from the random value generator in order to make sure that each time the code is executed, the same rows are used in the same fold. We then used the length of the dataset divided by the total number of folds in order to acquire a fold size.  Therefore, once you input the number of folds that you want the program to implement in its execution, the output for the (folds, test) function should randomly give you values that correspond to the amount of folds desired while, at the same time, generate the remaining dataset as test attributes.
 \item[$F$-measure] To compute the $F$-measure of the clustered Iris data, run \textsc{Fmeasure}$(D)$ 
 where $D$ is a six-dimensional dataframe with attributes: Sepal Length, Sepal Width, Petal Length, Petal Width,
               Species, and New Label, where the New Label is from the cluster identification. 
@@ -46,9 +46,19 @@ k_nearest(training_data,labels,testing,4)
 	\end{figure}
 	
 
-\item[Decision Tree] \todo{}
+\item[Decision Tree]
+                        #note the last value is unimplimented
+dt = decision_tree(data, 10, 0.50)
 
-\item[$k$ Fold Cross Validation] \todo{}
+\item[$k$ Fold Cross Validation]
+dataset = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+train, test = xvalidation_test_split(dataset, 6)
+print(train)
+print(test)
+
+#Example output
+#[2, 9, 8, 3, 5, 6]
+#[1, 4, 7, 10]
 
 \item[$F$-measure] Below we take the output from $k$-nearest neighbors when $k=4$ and then compute the $F$-measure. 
 \begin{verbatim}
