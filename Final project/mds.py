@@ -115,5 +115,6 @@ print(np.var(db_transform_8))
 #
 # https://stackoverflow.com/questions/42689003/save-numpy-array-to-csv-without-scientific-notation
 # https://scikit-learn.org/0.15/auto_examples/manifold/plot_mds.html#example-manifold-plot-mds-py
+# http://www.oranlooney.com/post/ml-from-scratch-part-6-pca/
 #
 #########################
